@@ -5,12 +5,6 @@
     <img src="http://ForTheBadge.com/images/badges/made-with-python.svg" width ="250">
   </a>
   <br>
-  <a href="https://github.com/git-itsjoel/AutoPicX/stargazers">
-    <img src="https://img.shields.io/github/stars/git-itsjoel/AutoPicX?style=social">
-  </a>
-  <a href="https://github.com/Cpflicks/Autopic/fork">
-    <img src="https://img.shields.io/github/forks/git-itsjoel/AutoPicX?label=Fork&style=social">
-  </a>  
 </p>
 
 
