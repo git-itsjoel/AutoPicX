@@ -11,7 +11,7 @@ API_ID = int(environ.get("API_ID"))
 API_HASH = environ.get("API_HASH")
 SESSION = environ.get("SESSION")
 TIME = int(environ.get("TIME", "60"))
-CHANNEL_ID = int(environ.get("CHANNEL_ID", "-1001927186931"))
+CHANNEL_ID = int(environ.get("CHANNEL_ID", "-1001815790599"))
 
 
 if SESSION is not None:
