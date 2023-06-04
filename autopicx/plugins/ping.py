@@ -14,11 +14,12 @@ logger = logging.getLogger(__name__)
 HELP = "**✨ Plugins ✨**\n\n`!start` - __To Start Changing DP__\n`!cancel` - __To Cancel Changing DP__\n`!alive` - __To Check If Bot Is Alive__\n`!repo` - __To Get The Repo__\n`!about` - __Details About Me__\n`!help` - __For This Message__"
 
 ABOUT_TXT = """
-**᪥ Name: 𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓
-᪥ Library: [Telethon](https://docs.telethon.dev/)
-᪥ Language: [Python 3](https://www.python.org)
-᪥ Dev: [𝙄𝙩𝙨 ⚡ 𝙅𝙤𝙚𝙡](https://t.me/joel_noob)
-᪥ Inspiration: [Dᴋ 🇮🇳](https://t.me/AbOutMe_DK)**"""
+᪥ **Name:** 𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓
+᪥ **Library: [Telethon](https://docs.telethon.dev/)**
+᪥ **Language: [Python 3](https://www.python.org)**
+᪥ **Dev:** [𝙄𝙩𝙨 ⚡ 𝙅𝙤𝙚𝙡](https://t.me/joel_noob)
+᪥ **Inspiration: [Dᴋ 🇮🇳](https://t.me/AbOutMe_DK)**
+"""
 
 REPO = "https://github.com/git-itsjoel/AutoPicX"
 
