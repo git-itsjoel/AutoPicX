@@ -1,0 +1,45 @@
+{
+  "name": "𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓",
+  "description": "AutoPicX is a Telethon based UserBot which helps you to change your profile pic in your desired time interval.",
+  "keywords": [
+    "telegram",
+    "best",
+    "autodp",
+    "telethon",
+    "autopicx userbot",
+    "autopicx"
+  ],
+  "repository": "https://github.com/git-itsjoel/AutoPicX",
+  "env": {
+    "API_ID": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": "",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": "",
+      "required": true
+    },
+    "SESSION": {
+      "description": "Generate this value from @CatStringSessionBot in telegram",
+      "value": "",
+      "required": true
+    },
+    "CHANNEL_ID": {
+      "description": "Place the ID of channel in which the pictures are saved to change your profile pic (Include -100 with ID)",
+      "value": "",
+      "required": true
+    },
+    "TIME": {
+      "description": "After What Time Next Pic To Be Changed Place Time in Seconds Eg- 60 it means 1 minute",
+      "value": "60",
+      "required": true
+    }
+  },
+  "addons": [
+  ],
+  "buildpacks": [{
+    "url": "heroku/python"
+  }]
+}
