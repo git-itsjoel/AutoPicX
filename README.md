@@ -6,6 +6,7 @@
   </a>
   <br>
   <a href="https://github.com/git-itsjoel/AutoPicX/stargazers">
+
     <img src="https://img.shields.io/github/stars/git-itsjoel/AutoPicX?style=social">
   </a>
   <a href="https://github.com/Cpflicks/Autopic/fork">
