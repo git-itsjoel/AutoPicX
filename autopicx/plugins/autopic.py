@@ -16,16 +16,25 @@ lock = asyncio.Lock()
 
 class temp(object):
     CANCEL = False
+    LAST = 0
 
 async def change_profile_pic(client):
     channel_id = CHANNEL_ID
-    
+
+    LAST = load_integer()
+    if LAST is not None:
+        offset = LAST
+    else:
+        offset = 0
+   
     async with lock:
         while True:
             if temp.CANCEL:
                 break
-            async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos):
-            
+            async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos, offset_id=offset):
+                temp.LAST += 1
+                save_integer(temp.LAST)
+
                 photo = await client.download_media(message=message.photo)
                 try:
                     await client(UploadProfilePhotoRequest(file=await client.upload_file(f'{photo}')))
