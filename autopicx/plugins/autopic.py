@@ -62,15 +62,15 @@ async def handle_cancel(event):
 async def handle_start(event):
     temp.CANCEL = False
     if lock.locked():
-        msg = await event.respond("𝘼𝙡𝙧𝙚𝙖𝙙𝙮 𝘼 𝙋𝙧𝙤𝙘𝙚𝙨𝙨 𝙄𝙨 𝙍𝙪𝙣𝙣𝙞𝙣𝙜......")
+        await event.edit("𝘼𝙡𝙧𝙚𝙖𝙙𝙮 𝘼 𝙋𝙧𝙤𝙘𝙚𝙨𝙨 𝙄𝙨 𝙍𝙪𝙣𝙣𝙞𝙣𝙜......")
         await asyncio.sleep(30)
-        await msg.delete()  
+        await event.delete()  
         return      
     try:
-        msg = await event.respond("𝙇𝙖𝙪𝙣𝙘𝙝𝙞𝙣𝙜 𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓......")
+        await event.edit("𝙇𝙖𝙪𝙣𝙘𝙝𝙞𝙣𝙜 𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓......")
         await change_profile_pic(client)
         await asyncio.sleep(30)
-        await msg.delete()
+        await event.delete()
     except Exception as e:
         logging.exception(e)
         await event.respond(str(e))
