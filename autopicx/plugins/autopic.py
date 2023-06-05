@@ -1,7 +1,7 @@
 #© 𝙄𝙩𝙨 ⚡ 𝙅𝙤𝙚𝙡 | #𝘼𝙗𝙊𝙪𝙩𝙈𝙚_𝘿𝙆
 
 from .. import client, TIME, CHANNEL_ID
-from autopicx.plugins.utils import save_integer, load_integer
+from autopicx.utils import save_integer, load_integer
 from telethon import events, types
 import logging 
 import os
