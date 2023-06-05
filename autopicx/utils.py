@@ -15,10 +15,10 @@ def load_plugins(plugin_name):
     print("Bot has Imported " + plugin_name)
 
 def save_integer(value):
-    os.environ['INTEGER_VALUE'] = str(value)
+    os.environ['LAST'] = str(value)
 
 def load_integer():
-    value = os.environ.get('INTEGER_VALUE')
+    value = os.environ.get('LAST')
     if value is not None:
         return int(value)
     else:
