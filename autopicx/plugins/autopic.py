@@ -24,7 +24,8 @@ async def change_profile_pic(client):
             if temp.CANCEL:
                 break
             async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos):
-            
+                if temp.CANCEL:
+                    break
                 photo = await client.download_media(message=message.photo)
                 try:
                     await client(UploadProfilePhotoRequest(file=await client.upload_file(f'{photo}')))
