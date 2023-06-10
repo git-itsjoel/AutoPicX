@@ -81,7 +81,7 @@ async def handle_delete(event):
     temp.CANCEL = False
     msg = await event.respond("Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...")
     cnt = 0
-    profile_photos = await client.get_profile_photos('me')
+    profile_photos = await client.get_profile_photos('me', limit=10)
 
     for photo in profile_photos[1:]:
         if temp.CANCEL:
