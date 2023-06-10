@@ -81,12 +81,12 @@ async def handle_delete(event):
     temp.CANCEL = False
     msg = await event.respond("Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...")
     cnt = 0
-    profile_photos = client.get_profile_photos('me')
+    profile_photos = await client.get_profile_photos('me')
 
     for photo in profile_photos[1:]:
         if temp.CANCEL:
             break
-        event.client(DeletePhotosRequest(profile_photos))
+        event.client(DeletePhotosRequest(photo))
         cnt += 1
         await event.edit(f"{cnt}")
         await asyncio.sleep(10)
