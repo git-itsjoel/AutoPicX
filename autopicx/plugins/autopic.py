@@ -69,7 +69,12 @@ async def handle_start(event):
 
 @client.on(events.NewMessage(outgoing=True, pattern='!delete'))
 async def handle_delete(event):
+    msg = await event.respond("Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...")
+    cnt = 0
     profile_photos = client.get_profile_photos('me')
 
     for photo in profile_photos[1:]:
             client(DeletePhotosRequest(id=[InputPhoto(id=photo.id)]))
+        cnt += 1
+        await event.edit(f"{cnt}")
+        await asyncio.sleep(10)
