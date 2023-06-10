@@ -6,8 +6,7 @@ import logging
 import os
 import asyncio
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
-from telethon.tl.types import InputMessagesFilterPhotos, InputPhoto
-from telethon.tl.functions.photos import DeletePhotosRequest
+from telethon.tl.types import InputMessagesFilterPhotos
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -67,14 +66,3 @@ async def handle_start(event):
         logging.exception(e)
         await event.respond(str(e))
 
-@client.on(events.NewMessage(outgoing=True, pattern='!delete'))
-async def handle_delete(event):
-    msg = await event.respond("Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...")
-    cnt = 0
-    profile_photos = client.get_profile_photos('me')
-
-    for photo in profile_photos[1:]:
-        client(DeletePhotosRequest(id=[InputPhoto(id=photo.id)]))
-        cnt += 1
-        await event.edit(f"{cnt}")
-        await asyncio.sleep(10)
