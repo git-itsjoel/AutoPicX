@@ -5,6 +5,7 @@ from autopicx.utils import save_integer, load_integer
 from telethon import events, types
 import logging 
 import os
+import random
 import asyncio
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.types import InputMessagesFilterPhotos
@@ -90,9 +91,12 @@ async def handle_delete(event):
         await event.client(DeletePhotosRequest([photo]))
         temp.DEL_CNT += 1
         if temp.DEL_CNT % 50 == 0:
-            await asyncio.sleep(60)
+            await event.edit(f"**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `120` Sᴇᴄ**")
+            await asyncio.sleep(120)
         else:
-            await asyncio.sleep(4)
+            sleep = random.randint(1, 60)
+            await event.edit(f"**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `{sleep}` Sᴇᴄ**")
+            await asyncio.sleep(sleep)
         await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**") 
   
     await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
