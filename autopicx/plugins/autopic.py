@@ -97,7 +97,6 @@ async def handle_delete(event):
             sleep = random.randint(1, 60)
             await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `{sleep}` Sᴇᴄ**")
             await asyncio.sleep(sleep)
-        await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**") 
   
     await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
 
