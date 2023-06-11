@@ -95,7 +95,7 @@ async def handle_delete(event):
                 break
             if temp.DEL_CNT % 150 == 0:
                 await event.edit(f"**Aᴄᴄᴏʀᴅɪɴɢ Tᴏ Sᴏᴍᴇ Lɪᴍɪᴛs Eɴᴅɪɴɢ Tʜᴇ Cᴜʀʀᴇɴᴛ Pʀᴏᴄᴇss Aɴᴅ Sᴛᴀʀᴛɪɴɢ A Nᴇᴡ Oɴᴇ. Lᴏᴏᴋ Iɴᴛᴏ Sᴀᴠᴇᴅ Mᴇssᴀɢᴇs Tᴏ Kɴᴏᴡ Cᴏᴜɴᴛs\n\nDᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**")
-                return await restart_del_process()
+                return await restart_del_process(event.chat.id)
                 break
             
             await event.client(DeletePhotosRequest([photo]))
@@ -110,6 +110,6 @@ async def handle_delete(event):
   
         await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
 
-async def restart_del_process():
+async def restart_del_process(chat_id):
     temp.LAST = None    
-    await client.send_message("me", "!delete")
+    await client.send_message(chat_id, "!delete")
