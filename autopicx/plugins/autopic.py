@@ -89,6 +89,9 @@ async def handle_delete(event):
         await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**") 
   
         async for photo in client.iter_profile_photos("me"):
+            if temp.CANCEL:
+                await event.edit(f"**Cᴀɴᴄᴇʟᴇᴅ\n\nDᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**")
+                break
             await event.client(DeletePhotosRequest([photo]))
             temp.DEL_CNT += 1
             if temp.DEL_CNT % 50 == 0:
