@@ -1,3 +1,5 @@
 telethon
 python-decouple
 cryptg
+pyrogram
+tgcrypto
