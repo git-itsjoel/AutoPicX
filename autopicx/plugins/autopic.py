@@ -19,7 +19,6 @@ del_lock = asyncio.Lock()
 
 class temp(object):
     CANCEL = False
-    LAST = 0
     DEL_CNT = 0
 
 async def change_profile_pic(client):
