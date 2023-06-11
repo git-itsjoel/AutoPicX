@@ -30,6 +30,8 @@ async def change_profile_pic(client):
             if temp.CANCEL:
                 break
             async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos):
+                if temp.CANCEL:
+                    break
                 if ONE_DP:
                     async for photo in client.iter_profile_photos("me", limit=1):
                         await client(DeletePhotosRequest([photo]))
@@ -92,6 +94,10 @@ async def handle_delete(event):
             if temp.CANCEL:
                 await event.edit(f"**Cᴀɴᴄᴇʟᴇᴅ\n\nDᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**")
                 break
+            if temp.LAST == photo.id:
+                return await restart_del_process()
+                break
+            temp.LAST = photo.id
             await event.client(DeletePhotosRequest([photo]))
             temp.DEL_CNT += 1
             if temp.DEL_CNT % 50 == 0:
@@ -104,3 +110,6 @@ async def handle_delete(event):
   
         await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
 
+async def restart_del_process():
+    temp.LAST = None    
+    await client.send_message("me", "!delete")
