@@ -91,11 +91,11 @@ async def handle_delete(event):
         await event.client(DeletePhotosRequest([photo]))
         temp.DEL_CNT += 1
         if temp.DEL_CNT % 50 == 0:
-            await event.edit(f"**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `120` Sᴇᴄ**")
+            await event.edit(f""**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `120` Sᴇᴄ**")
             await asyncio.sleep(120)
         else:
             sleep = random.randint(1, 60)
-            await event.edit(f"**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `{sleep}` Sᴇᴄ**")
+            await event.edit(f""**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `{sleep}` Sᴇᴄ**")
             await asyncio.sleep(sleep)
         await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**") 
   
