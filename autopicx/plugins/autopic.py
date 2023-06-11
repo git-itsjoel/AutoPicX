@@ -94,10 +94,11 @@ async def handle_delete(event):
             if temp.CANCEL:
                 await event.edit(f"**Cᴀɴᴄᴇʟᴇᴅ\n\nDᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**")
                 break
-            if temp.LAST == photo.id:
+            if temp.DEL_CNT % 150 == 0:
+                await event.edit(f"**Aᴄᴄᴏʀᴅɪɴɢ Tᴏ Sᴏᴍᴇ Lɪᴍɪᴛs Eɴᴅɪɴɢ Tʜᴇ Cᴜʀʀᴇɴᴛ Pʀᴏᴄᴇss Aɴᴅ Sᴛᴀʀᴛɪɴɢ A Nᴇᴡ Oɴᴇ. Lᴏᴏᴋ Iɴᴛᴏ Sᴀᴠᴇᴅ Mᴇssᴀɢᴇs Tᴏ Kɴᴏᴡ Cᴏᴜɴᴛs\n\nDᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**")
                 return await restart_del_process()
                 break
-            temp.LAST = photo.id
+            
             await event.client(DeletePhotosRequest([photo]))
             temp.DEL_CNT += 1
             if temp.DEL_CNT % 50 == 0:
