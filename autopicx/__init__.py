@@ -13,6 +13,7 @@ SESSION = environ.get("SESSION")
 TIME = int(environ.get("TIME", "60"))
 CHANNEL_ID = int(environ.get("CHANNEL_ID", "-1001815790599"))
 ONE_DP = environ.get("ONE_DP", True)
+PYRO_SESSION = environ.get("PYRO_SESSION")
 
 
 if SESSION is not None:
