@@ -11,7 +11,16 @@ logging.basicConfig(level=logging.DEBUG,
 logger = logging.getLogger(__name__)
 
 # -- Constants -- #
-HELP = "**✨ Plugins ✨**\n\n`!start` - __To Start Changing DP__\n`!cancel` - __To Cancel Changing DP__\n`!alive` - __To Check If Bot Is Alive__\n`!repo` - __To Get The Repo__\n`!about` - __Details About Me__\n`!help` - __For This Message__"
+HELP = """
+𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓 __Commands__
+
+`!start` - __To Start Changing DP__
+`!cancel` - __To Cancel Changing DP__
+`!alive` - __To Check If Bot Is Alive__
+`!repo` - __To Get The Repo__
+`!about` - __Details About Me__
+`!help` - __For This Message__
+"""
 
 ABOUT_TXT = """
 ᪥ **Name:** 𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓
@@ -21,7 +30,9 @@ ABOUT_TXT = """
 ᪥ **Inspiration: [Dᴋ 🇮🇳](https://t.me/AbOutMe_DK)**
 """
 
-REPO = "https://github.com/git-itsjoel/AutoPicX"
+REPO = """
+𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓 __is an Open Source UserBot based on Telethon you can access it's source code from **[here](https://github.com/git-itsjoel/AutoPicX)**__
+"""
 
 @client.on(events.NewMessage(outgoing=True, pattern='!repo'))
 async def repo(event):
