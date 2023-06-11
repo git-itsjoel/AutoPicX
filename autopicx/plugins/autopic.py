@@ -77,22 +77,23 @@ async def handle_start(event):
         logging.exception(e)
         await event.respond(str(e))
 
-@client.on(events.NewMessage(outgoing=True, pattern='!delete'))
-async def handle_delete(event):
-    temp.CANCEL = False
-   
-    if lock.locked():
-        return await event.edit("**Sᴛᴏᴘ Tʜᴇ Oɴɢᴏɪɴɢ DP Cʜᴀɴɢɪɴɢ Fɪʀsᴛ !**")
-
-    await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**")
-
-    async for phot in client.iter_profile_photos("me"):
-        await event.client(DeletePhotosRequest(phot))
+@client.on(events.NewMessage(outgoing=True, pattern='!delete')) 
+async def handle_delete(event): 
+    temp.CANCEL = False 
+  
+    if lock.locked(): 
+        return await event.edit("**Sᴛᴏᴘ Tʜᴇ Oɴɢᴏɪɴɢ DP Cʜᴀɴɢɪɴɢ Fɪʀsᴛ !**") 
+  
+    await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**") 
+  
+    photos = await client.get_profile_photos("me")
+    for photo in photos:
+        await event.client(DeletePhotosRequest(photo))
         temp.DEL_CNT += 1
         if temp.DEL_CNT % 50 == 0:
             await asyncio.sleep(60)
         else:
             await asyncio.sleep(4)
-        await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**")
-
+        await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**") 
+  
     await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
