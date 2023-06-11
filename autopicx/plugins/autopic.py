@@ -31,7 +31,7 @@ async def change_profile_pic(client):
                 break
             async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos):
                 if ONE_DP:
-                    photo = await client.get_profile_photos("me", limit=1)
+                    photo = await client.iter_profile_photos("me", limit=1)
                     await client(DeletePhotosRequest([photo]))
                 
 
