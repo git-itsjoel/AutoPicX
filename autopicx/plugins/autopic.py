@@ -1,6 +1,6 @@
 #© 𝙄𝙩𝙨 ⚡ 𝙅𝙤𝙚𝙡 | #𝘼𝙗𝙊𝙪𝙩𝙈𝙚_𝘿𝙆
 
-from .. import client, TIME, CHANNEL_ID, ONE_DP
+from .. import client, TIME, CHANNEL_ID, ONE_DP, PYRO_SESSION
 from autopicx.utils import save_integer, load_integer
 from telethon import events, types
 import logging 
@@ -9,7 +9,6 @@ import random
 import asyncio
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.types import InputMessagesFilterPhotos
-from telethon.tl.functions.photos import DeletePhotosRequest
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -78,34 +77,7 @@ async def handle_start(event):
 
 @client.on(events.NewMessage(outgoing=True, pattern='!delete')) 
 async def handle_delete(event): 
-    temp.CANCEL = False 
-
-    if del_lock.locked():
-        return await event.edit("**Pʀᴏᴄᴇss Aʟʀᴇᴀᴅʏ Iɴᴛɪᴀᴛᴇᴅ !**") 
-
-    if lock.locked(): 
-        return await event.edit("**Sᴛᴏᴘ Tʜᴇ Oɴɢᴏɪɴɢ DP Cʜᴀɴɢɪɴɢ Fɪʀsᴛ !**") 
-    
-    async with del_lock:
-        await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**") 
-  
-        async for photo in client.iter_profile_photos("me"):
-            if temp.CANCEL:
-                await event.edit(f"**Cᴀɴᴄᴇʟᴇᴅ\n\nDᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**")
-                break
-            
-            
-            await event.client(DeletePhotosRequest([photo]))
-            temp.DEL_CNT += 1
-            if temp.DEL_CNT % 50 == 0:
-                await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `120` Sᴇᴄ**")
-                await asyncio.sleep(120)
-            else:
-                sleep = random.randint(1, 60)
-                await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `{sleep}` Sᴇᴄ**")
-            await asyncio.sleep(sleep)
-  
-        await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
-
+    if PYRO_SESSION is None:
+        await event.edit("Add The Var `PYRO_SESSION` To Use This Function\n\nCreate The Session String From Here")
 
 
