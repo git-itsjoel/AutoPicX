@@ -33,11 +33,11 @@ if PYRO_SESSION is not None:
                 deleted+=1
                 
                 if deleted % 50 == 0:
-                    await message.edit(f"🗑️ Dᴇʟᴇᴛᴇᴅ: `{delete}`\n🎗️ Rᴇᴍᴀɪɴɪɴɢ: `{remaining}`\n😴 Sʟᴇᴇᴘɪɴɢ: `120 sec`")
+                    await message.edit(f"🗑️ Dᴇʟᴇᴛᴇᴅ: `{deleted}`\n🎗️ Rᴇᴍᴀɪɴɪɴɢ: `{remaining}`\n😴 Sʟᴇᴇᴘɪɴɢ: `120 sec`")
                     await asyncio.sleep(120)
                 else:
                     sleep = random.randint(1, 60)
-                    await message.edit(f"🗑️ Dᴇʟᴇᴛᴇᴅ: `{delete}`\n🎗️ Rᴇᴍᴀɪɴɪɴɢ: `{remaining}`\n😴 Sʟᴇᴇᴘɪɴɢ: `{sleep}`")
+                    await message.edit(f"🗑️ Dᴇʟᴇᴛᴇᴅ: `{deleted}`\n🎗️ Rᴇᴍᴀɪɴɪɴɢ: `{remaining}`\n😴 Sʟᴇᴇᴘɪɴɢ: `{sleep}`")
                     await asyncio.sleep(sleep)
           
     autopicx.run()
