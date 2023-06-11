@@ -86,9 +86,8 @@ async def handle_delete(event):
   
     await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**") 
   
-    photos = await client.get_profile_photos("me")
-    for photo in photos:
-        await event.client(DeletePhotosRequest(photo))
+    async for photo in client.iter_profile_photos("me"):
+        await event.client(DeletePhotosRequest(photo.id))
         temp.DEL_CNT += 1
         if temp.DEL_CNT % 50 == 0:
             await asyncio.sleep(60)
@@ -97,3 +96,4 @@ async def handle_delete(event):
         await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**") 
   
     await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
+
