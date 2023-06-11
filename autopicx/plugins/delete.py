@@ -6,6 +6,7 @@ from .autopic import del_lock, lock, temp
 
 if PYRO_SESSION is not None:
     autopicx = Client(
+        name = "AutoPicX",
         api_id = API_ID,
         api_hash = API_HASH,
         session_string = PYRO_SESSION
