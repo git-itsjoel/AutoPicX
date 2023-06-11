@@ -18,6 +18,7 @@ lock = asyncio.Lock()
 class temp(object):
     CANCEL = False
     LAST = 0
+    DEL_CNT = 0
 
 async def change_profile_pic(client):
     channel_id = CHANNEL_ID
@@ -79,8 +80,19 @@ async def handle_start(event):
 @client.on(events.NewMessage(outgoing=True, pattern='!delete'))
 async def handle_delete(event):
     temp.CANCEL = False
-    msg = await event.respond("Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...")
-    cnt = 0
-    profile_photos = await client.get_profile_photos('me', limit=10)
+   
+    if lock.locked():
+        return await event.edit("**Sᴛᴏᴘ Tʜᴇ Oɴɢᴏɪɴɢ DP Cʜᴀɴɢɪɴɢ Fɪʀsᴛ !**")
 
-    await event.client(DeletePhotosRequest(profile_photos))
+    await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**")
+
+    async for photo in client.iter_profile_photos("me"):
+        await event.client(DeletePhotosRequest(photo))
+        temp.DEL_CNT += 1
+        if temp.DEL_CNT % 50 == 0:
+            await asyncio.sleep(60)
+        else:
+            await asyncio.sleep(4)
+        await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**)
+
+    await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
