@@ -1,6 +1,6 @@
 #© 𝙄𝙩𝙨 ⚡ 𝙅𝙤𝙚𝙡 | #𝘼𝙗𝙊𝙪𝙩𝙈𝙚_𝘿𝙆
 
-from .. import client, TIME, CHANNEL_ID
+from .. import client, TIME, CHANNEL_ID, ONE_DP
 from autopicx.utils import save_integer, load_integer
 from telethon import events, types
 import logging 
@@ -15,6 +15,7 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 lock = asyncio.Lock()
+del_lock = asyncio.Lock()
 
 class temp(object):
     CANCEL = False
@@ -23,20 +24,16 @@ class temp(object):
 
 async def change_profile_pic(client):
     channel_id = CHANNEL_ID
-
-    LAST = load_integer()
-    if LAST is not None:
-        offset = LAST
-    else:
-        offset = 0
    
     async with lock:
         while True:
             if temp.CANCEL:
                 break
-            async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos, offset_id=offset):
-                temp.LAST += 1
-                save_integer(temp.LAST)
+            async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos):
+                if ONE_DP:
+                    photo = await client.get_profile_photos("me", limit=1)
+                    await client(DeletePhotosRequest([photo]))
+                
 
                 photo = await client.download_media(message=message.photo)
                 try:
@@ -81,22 +78,26 @@ async def handle_start(event):
 @client.on(events.NewMessage(outgoing=True, pattern='!delete')) 
 async def handle_delete(event): 
     temp.CANCEL = False 
-  
+
+    if del_lock.locked():
+        return await event.edit("**Pʀᴏᴄᴇss Aʟʀᴇᴀᴅʏ Iɴᴛɪᴀᴛᴇᴅ !**") 
+
     if lock.locked(): 
         return await event.edit("**Sᴛᴏᴘ Tʜᴇ Oɴɢᴏɪɴɢ DP Cʜᴀɴɢɪɴɢ Fɪʀsᴛ !**") 
+    
+    async with del_lock:
+        await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**") 
   
-    await event.edit("**Sᴛᴀʀᴛɪɴɢ Tᴏ Dᴇʟᴇᴛᴇ...**") 
-  
-    async for photo in client.iter_profile_photos("me"):
-        await event.client(DeletePhotosRequest([photo]))
-        temp.DEL_CNT += 1
-        if temp.DEL_CNT % 50 == 0:
-            await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `120` Sᴇᴄ**")
-            await asyncio.sleep(120)
-        else:
-            sleep = random.randint(1, 60)
-            await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `{sleep}` Sᴇᴄ**")
+        async for photo in client.iter_profile_photos("me"):
+            await event.client(DeletePhotosRequest([photo]))
+            temp.DEL_CNT += 1
+            if temp.DEL_CNT % 50 == 0:
+                await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `120` Sᴇᴄ**")
+                await asyncio.sleep(120)
+            else:
+                sleep = random.randint(1, 60)
+                await event.edit(f"**Dᴇʟᴇᴛᴇᴅ `{temp.DEL_CNT}` Pɪᴄs**\n\n**Sʟᴇᴇᴘɪɴɢ Fᴏʀ `{sleep}` Sᴇᴄ**")
             await asyncio.sleep(sleep)
   
-    await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
+        await event.respond("**Sᴜᴄᴇssғᴜʟʟʏ Dᴇʟᴇᴛᴇᴅ Aʟʟ Pʀᴏғɪʟᴇ Pɪᴄs ✨**")
 
