@@ -14,6 +14,32 @@ if PYRO_SESSION is not None:
         api_hash = API_HASH,
         session_string = PYRO_SESSION
         )
+
+    def get_readable_time(seconds) -> str:
+        """
+        Return a human-readable time format
+        """
+
+        result = ""
+        (days, remainder) = divmod(seconds, 86400)
+        days = int(days)
+
+        if days != 0:
+            result += f"{days}d"
+        (hours, remainder) = divmod(remainder, 3600)
+        hours = int(hours)
+
+        if hours != 0:
+            result += f"{hours}h"
+        (minutes, seconds) = divmod(remainder, 60)
+        minutes = int(minutes)
+
+        if minutes != 0:
+            result += f"{minutes}m"
+
+        seconds = int(seconds)
+        result += f"{seconds}s"
+        return result
         
     @autopicx.on_message(filters.regex("!delete"))
     async def pyro_del_dp(client, message):
@@ -53,28 +79,4 @@ if PYRO_SESSION is not None:
           
     autopicx.run()
 
-def get_readable_time(seconds) -> str:
-    """
-    Return a human-readable time format
-    """
 
-    result = ""
-    (days, remainder) = divmod(seconds, 86400)
-    days = int(days)
-
-    if days != 0:
-        result += f"{days}d"
-    (hours, remainder) = divmod(remainder, 3600)
-    hours = int(hours)
-
-    if hours != 0:
-        result += f"{hours}h"
-    (minutes, seconds) = divmod(remainder, 60)
-    minutes = int(minutes)
-
-    if minutes != 0:
-        result += f"{minutes}m"
-
-    seconds = int(seconds)
-    result += f"{seconds}s"
-    return result
