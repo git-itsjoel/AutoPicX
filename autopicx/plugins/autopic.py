@@ -7,7 +7,7 @@ import logging
 import os
 import random
 import asyncio
-from telethon.tl.functions.photos import UploadProfilePhotoRequest
+from telethon.tl.functions.photos import UploadProfilePhotoRequest, DeletePhotosRequest
 from telethon.tl.types import InputMessagesFilterPhotos
 
 logging.basicConfig(level=logging.DEBUG,
