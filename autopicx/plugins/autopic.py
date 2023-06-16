@@ -28,11 +28,7 @@ async def change_profile_pic(client):
                 break
             async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos):
                 if temp.CANCEL:
-                    break
-                if ONE_DP:
-                    async for photo in client.iter_profile_photos("me", limit=1):
-                        await client(DeletePhotosRequest([photo]))
-                
+                    break               
 
                 photo = await client.download_media(message=message.photo)
                 try:
@@ -42,6 +38,17 @@ async def change_profile_pic(client):
                 except Exception as e:
                     logger.exception(e)
                     continue
+
+                if ONE_DP:
+                    count = 0
+                    async for photo in client.iter_profile_photos("me", limit=1):
+                        count += 1
+                        if count == 2:
+                            await client(DeletePhotosRequest([photo]))
+                            break
+                        else:
+                            countinue
+
                 await asyncio.sleep(TIME)
         
 
