@@ -60,6 +60,8 @@ if PYRO_SESSION is not None:
                 time_remaining = elapsed_time / deleted * remaining 
                 elapsed_time_str = get_readable_time(elapsed_time) 
                 time_remaining_str = get_readable_time(time_remaining) 
+                if remaining == 0:
+                    break
                 if deleted % 50 == 0: 
                     await message.edit(f"**🗑️ Dᴇʟᴇᴛᴇᴅ: `{deleted}`\n🎗️ Rᴇᴍᴀɪɴɪɴɢ: `{remaining}`\n😴 Sʟᴇᴇᴘɪɴɢ: `120 sec`\n\n⏳ Tɪᴍᴇ Tᴀᴋᴇɴ: {elapsed_time_str}\n⏰ ETC: {time_remaining_str}\n🎈 Lᴀsᴛ Uᴘᴅᴀᴛᴇᴅ: {ttime}**") 
                     await asyncio.sleep(120) 
