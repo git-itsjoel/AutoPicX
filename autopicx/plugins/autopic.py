@@ -47,7 +47,7 @@ async def change_profile_pic(client):
                             await client(DeletePhotosRequest([photo]))
                             break
                         else:
-                            countinue
+                            continue
 
                 await asyncio.sleep(TIME)
         
