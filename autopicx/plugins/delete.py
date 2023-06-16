@@ -67,6 +67,8 @@ if PYRO_SESSION is not None:
                     sleep = random.randint(1, 60) 
                     await message.edit(f"**🗑️ Dᴇʟᴇᴛᴇᴅ: `{deleted}`\n🎗️ Rᴇᴍᴀɪɴɪɴɢ: `{remaining}`\n😴 Sʟᴇᴇᴘɪɴɢ: `{sleep}`\n\n⏳ Tɪᴍᴇ Tᴀᴋᴇɴ: {elapsed_time_str}\n⏰ ETC: {time_remaining_str}\n🎈 Lᴀsᴛ Uᴘᴅᴀᴛᴇᴅ: {ttime}**") 
                     await asyncio.sleep(sleep)
+
+            await message.edit(f"**Pʀᴏᴄᴇss Fɪɴɪsʜᴇᴅ ✨\n\n🗑️ Dᴇʟᴇᴛᴇᴅ: `{deleted}`\n🎗️ Rᴇᴍᴀɪɴɪɴɢ: `{remaining}`\n😴 Sʟᴇᴇᴘɪɴɢ: `{sleep}`\n\n⏳ Tɪᴍᴇ Tᴀᴋᴇɴ: {elapsed_time_str}\n🎈 Lᴀsᴛ Uᴘᴅᴀᴛᴇᴅ: {ttime}**")
           
     autopicx.run()
 
