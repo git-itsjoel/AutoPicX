@@ -41,7 +41,7 @@ async def change_profile_pic(client):
 
                 if ONE_DP:
                     count = 0
-                    async for photo in client.iter_profile_photos("me", limit=1):
+                    async for photo in client.iter_profile_photos("me"):
                         count += 1
                         if count == 2:
                             await client(DeletePhotosRequest([photo]))
