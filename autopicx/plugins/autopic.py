@@ -26,7 +26,7 @@ async def change_profile_pic(client):
         while True:
             if temp.CANCEL:
                 break
-            async for message in client.iter_messages(channel_id, reverse=True, filter=InputMessagesFilterPhotos):
+            async for message in client.iter_messages(channel_id, reverse=False, filter=InputMessagesFilterPhotos):
                 if temp.CANCEL:
                     break               
 
